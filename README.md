@@ -26,3 +26,11 @@ Abrir http://127.0.0.1:8000
 - `database/seeders/ProductSeeder.php` – 12 cartas de ejemplo (sin duplicar al re-ejecutar).
 - `app/Http/Controllers/HomeController.php` – pasa `$products` a la vista (filtro opcional `?q=`).
 - `resources/views/layouts/app.blade.php`, `partials/header.blade.php`, `partials/product-card.blade.php`, `home.blade.php`.
+
+## Diseño e interactividad
+- Imágenes oficiales (PokéAPI, uso educativo) en `public/images/pokemon/`. Si falta alguna, se muestra una ilustración CSS de respaldo (accesor `image_url` del modelo).
+- `public/css/pokemarket.css`: cabecera con efecto cristal, portada con carta 3D holográfica, bordes holo para rarezas altas, diseño responsive y `prefers-reduced-motion`.
+- `public/js/pokemarket.js` (JavaScript sin librerías): menú móvil, filtros por tipo y rareza, ordenación por precio/nombre, modal "Ver carta" y animaciones al hacer scroll.
+- Vistas extra: `partials/hero.blade.php` y `partials/footer.blade.php`.
+
+Créditos: Ilustraciones de PokéAPI (uso educativo). Pokémon © Nintendo/Game Freak/The Pokémon Company.

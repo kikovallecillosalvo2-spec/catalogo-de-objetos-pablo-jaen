@@ -4,13 +4,15 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
     /**
      * Cartas de demostración.
      * IMPORTANTE: los precios son FICTICIOS, solo para la demo; no reflejan el mercado real.
-     * Las imágenes se dejan a null: la vista genera una ilustración CSS según el tipo.
+     * Imágenes: ilustraciones oficiales descargadas de PokéAPI en public/images/pokemon/{slug}.png
+     * (uso educativo). Si faltara un archivo, la vista muestra una ilustración CSS de respaldo.
      */
     public function run(): void
     {
@@ -30,10 +32,13 @@ class ProductSeeder extends Seeder
         ];
 
         foreach ($cards as $card) {
-            // updateOrCreate por nombre + colección: volver a ejecutar no duplica.
+            // Ruta relativa a public/, p. ej. images/pokemon/charizard.png
+            $card['image'] = 'images/pokemon/' . Str::slug($card['name']) . '.png';
+
+            // updateOrCreate por nombre + colección: volver a ejecutar no duplica, solo actualiza.
             Product::updateOrCreate(
                 ['name' => $card['name'], 'set_name' => $card['set_name']],
-                $card + ['image' => null]
+                $card
             );
         }
     }
